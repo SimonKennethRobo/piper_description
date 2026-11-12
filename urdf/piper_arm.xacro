@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<!--
+  Macro for a Piper-series arm, optionally with the AgileX gripper.
+
+    <xacro:include filename="$(find piper_sdk_description)/urdf/piper_arm.xacro"/>
+    <xacro:piper_arm model="piper_x" with_gripper="true"/>
+
+  model: piper | piper_h | piper_l | piper_x (as robot.model in the piper_sdk config).
+  Frames: base_link .. link6; link6 is the flange frame of piper_sdk's kinematics (same pose
+  as Kinematics.forward, checked to 0.3 mm). With the gripper: flange_link, gripper_base and
+  the prismatic joint "gripper" = jaw opening in m (0..0.1); gripper_joint1/2 mimic it.
+-->
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <xacro:include filename="$(find piper_sdk_description)/urdf/piper.xacro"/>
+  <xacro:include filename="$(find piper_sdk_description)/urdf/piper_h.xacro"/>
+  <xacro:include filename="$(find piper_sdk_description)/urdf/piper_l.xacro"/>
+  <xacro:include filename="$(find piper_sdk_description)/urdf/piper_x.xacro"/>
+  <xacro:include filename="$(find piper_sdk_description)/urdf/agx_gripper.xacro"/>
+
+  <xacro:macro name="piper_arm" params="model:=piper with_gripper:=true">
+    <material name="piper_base"><color rgba="0.25 0.25 0.27 1"/></material>
+    <material name="piper_link"><color rgba="0.86 0.87 0.89 1"/></material>
+    <material name="piper_finger"><color rgba="0.35 0.35 0.38 1"/></material>
+
+    <xacro:if value="${model == 'piper'}"><xacro:piper_body/></xacro:if>
+    <xacro:if value="${model == 'piper_h'}"><xacro:piper_h_body/></xacro:if>
+    <xacro:if value="${model == 'piper_l'}"><xacro:piper_l_body/></xacro:if>
+    <xacro:if value="${model == 'piper_x'}"><xacro:piper_x_body/></xacro:if>
+    <xacro:unless value="${model in ['piper', 'piper_h', 'piper_l', 'piper_x']}">
+      <!-- xacro has no error tag: an undefined name makes it fail with this name in the message. -->
+      <link name="${piper_arm__model_must_be_piper_piper_h_piper_l_or_piper_x}"/>
+    </xacro:unless>
+
+    <xacro:if value="${with_gripper}">
+      <!-- Piper X mounts the gripper a quarter turn round its flange axis. -->
+      <xacro:agx_gripper parent="link6" flange_model="${model}"
+                         mount_yaw="${pi / 2 if model == 'piper_x' else 0}"/>
+    </xacro:if>
+  </xacro:macro>
+</robot>
