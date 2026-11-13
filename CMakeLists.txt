@@ -16,7 +16,8 @@ if(BUILD_TESTING)
         endforeach()
     endforeach()
     # urdf/generated/ (plain URDFs that piper_sdk compiles in) must be what the xacros give
-    # now: regenerate them into the build dir and compare.
+    # now (including generated/sim/, the full URDFs for simulators): regenerate them into the
+    # build dir and compare.
     add_test(NAME generated_urdfs_up_to_date
         COMMAND bash -c "${CMAKE_CURRENT_SOURCE_DIR}/scripts/generate_plain_urdfs.sh 0.035 ${CMAKE_CURRENT_BINARY_DIR}/generated \
             && diff -r ${CMAKE_CURRENT_SOURCE_DIR}/urdf/generated ${CMAKE_CURRENT_BINARY_DIR}/generated \
