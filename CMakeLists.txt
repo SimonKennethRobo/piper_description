@@ -15,6 +15,12 @@ if(BUILD_TESTING)
                         model:=${model} with_gripper:=${gripper} -o ${CMAKE_CURRENT_BINARY_DIR}/${model}_${gripper}.urdf)
         endforeach()
     endforeach()
+    # urdf/generated/ (plain URDFs that piper_sdk compiles in) must be what the xacros give
+    # now: regenerate them into the build dir and compare.
+    add_test(NAME generated_urdfs_up_to_date
+        COMMAND bash -c "${CMAKE_CURRENT_SOURCE_DIR}/scripts/generate_plain_urdfs.sh 0.035 ${CMAKE_CURRENT_BINARY_DIR}/generated \
+            && diff -r ${CMAKE_CURRENT_SOURCE_DIR}/urdf/generated ${CMAKE_CURRENT_BINARY_DIR}/generated \
+            || { echo 'urdf/generated is out of date: run scripts/generate_plain_urdfs.sh'; exit 1; }")
 endif()
 
 ament_package()
