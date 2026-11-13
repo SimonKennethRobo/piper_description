@@ -3,7 +3,7 @@ project(piper_sdk_description NONE)
 
 find_package(ament_cmake REQUIRED)
 
-install(DIRECTORY meshes urdf DESTINATION share/${PROJECT_NAME})
+install(DIRECTORY meshes overlay scripts urdf DESTINATION share/${PROJECT_NAME})
 
 if(BUILD_TESTING)
     # Every model must expand to a valid URDF, with and without the gripper.
@@ -15,13 +15,14 @@ if(BUILD_TESTING)
                         model:=${model} with_gripper:=${gripper} -o ${CMAKE_CURRENT_BINARY_DIR}/${model}_${gripper}.urdf)
         endforeach()
     endforeach()
-    # urdf/generated/ (plain URDFs that piper_sdk compiles in) must be what the xacros give
-    # now (including generated/sim/, the full URDFs for simulators): regenerate them into the
-    # build dir and compare.
+    # urdf/generated/ (the full URDFs for ROS and simulators) must be what the generator gives
+    # from the SDK's plain URDFs and overlay/ now. The SDK checkout is found as
+    # scripts/generate_urdfs.py documents (sibling/parent checkout, $PIPER_SDK_URDF_DIR); without
+    # one the test is skipped (exit code 77).
+    find_package(Python3 REQUIRED COMPONENTS Interpreter)
     add_test(NAME generated_urdfs_up_to_date
-        COMMAND bash -c "${CMAKE_CURRENT_SOURCE_DIR}/scripts/generate_plain_urdfs.sh 0.035 ${CMAKE_CURRENT_BINARY_DIR}/generated \
-            && diff -r ${CMAKE_CURRENT_SOURCE_DIR}/urdf/generated ${CMAKE_CURRENT_BINARY_DIR}/generated \
-            || { echo 'urdf/generated is out of date: run scripts/generate_plain_urdfs.sh'; exit 1; }")
+        COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/scripts/generate_urdfs.py --check)
+    set_tests_properties(generated_urdfs_up_to_date PROPERTIES SKIP_RETURN_CODE 77)
 endif()
 
 ament_package()

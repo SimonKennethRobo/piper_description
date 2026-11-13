@@ -1,0 +1,9 @@
+{
+  "_comment": "Visuals of the AgileX gripper links (and the flange, whose mesh depends on the arm: {model}), used by the *_gripper URDFs.",
+  "links": {
+    "flange_link": {"mesh": "{model}/flange.stl", "material": "piper_link"},
+    "gripper_base": {"mesh": "agx_gripper/gripper_base.stl", "material": "piper_link"},
+    "gripper_link1": {"mesh": "agx_gripper/gripper_link1.stl", "material": "piper_finger"},
+    "gripper_link2": {"mesh": "agx_gripper/gripper_link2.stl", "material": "piper_finger"}
+  }
+}

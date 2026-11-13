@@ -3,7 +3,7 @@
 <package format="3">
   <name>piper_sdk_description</name>
   <version>0.1.0</version>
-  <description>URDF and meshes of the AgileX Piper series (Piper, Piper H, Piper L, Piper X) and the AgileX gripper, imported from agx_arm_urdf.</description>
+  <description>URDF and meshes of the AgileX Piper series (Piper, Piper H, Piper L, Piper X) and the AgileX gripper, meshes and visuals added to the plain URDFs of piper_sdk (xacro entry point, RViz and simulator URDFs).</description>
   <maintainer email="kenneth_simon@outlook.com">SimonKenneth</maintainer>
   <license>MIT</license>
 

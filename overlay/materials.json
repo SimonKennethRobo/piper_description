@@ -1,0 +1,8 @@
+{
+  "_comment": "Materials (rgba) the visuals below refer to.",
+  "materials": {
+    "piper_base": "0.25 0.25 0.27 1",
+    "piper_link": "0.86 0.87 0.89 1",
+    "piper_finger": "0.35 0.35 0.38 1"
+  }
+}

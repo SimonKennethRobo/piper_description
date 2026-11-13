@@ -1,0 +1,12 @@
+{
+  "_comment": "Visual and collision meshes (under meshes/) and materials of the piper_l arm links of the SDK URDF piper_l.urdf. Optional keys per link: collision (mesh), origin {xyz, rpy} (default zeros).",
+  "links": {
+    "base_link": {"mesh": "piper_l/base_link.stl", "material": "piper_base"},
+    "link1": {"mesh": "piper_l/link1.stl", "material": "piper_link"},
+    "link2": {"mesh": "piper_l/link2.stl", "material": "piper_link"},
+    "link3": {"mesh": "piper_l/link3.stl", "material": "piper_link"},
+    "link4": {"mesh": "piper_l/link4.stl", "material": "piper_link"},
+    "link5": {"mesh": "piper_l/link5.stl", "material": "piper_link"},
+    "link6": {"mesh": "piper_l/link6.stl", "material": "piper_link"}
+  }
+}
