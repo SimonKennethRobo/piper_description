@@ -1,8 +1,11 @@
-# piper_sdk_description
+# Piper Description
 
 Meshes, visuals and simulator/RViz URDFs of the AgileX Piper series (piper, piper_h,
 piper_l, piper_x, each bare or with the AgileX gripper). Only needed for simulation and
 digital twins; piper_sdk itself needs just its own plain URDFs.
+
+Repository name: `piper_description`. The ROS package name and generated `package://` mesh
+URIs remain `piper_sdk_description` for compatibility.
 
 Part of Piper Lab as a shared resource repository beside `piper_control`, `piper_sim` and
 `piper_studio`. The kinematic/inertial source URDFs belong to Control; meshes, visual overlays
