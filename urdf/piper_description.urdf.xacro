@@ -4,6 +4,6 @@
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="piper">
   <xacro:arg name="model" default="piper"/>
   <xacro:arg name="with_gripper" default="true"/>
-  <xacro:include filename="$(find piper_sdk_description)/urdf/piper_arm.xacro"/>
+  <xacro:include filename="$(find piper_description)/urdf/piper_arm.xacro"/>
   <xacro:piper_arm model="$(arg model)" with_gripper="$(arg with_gripper)"/>
 </robot>

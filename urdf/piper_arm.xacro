@@ -2,7 +2,7 @@
 <!--
   Macro for a Piper-series arm, optionally with the AgileX gripper.
 
-    <xacro:include filename="$(find piper_sdk_description)/urdf/piper_arm.xacro"/>
+    <xacro:include filename="$(find piper_description)/urdf/piper_arm.xacro"/>
     <xacro:piper_arm model="piper_x" with_gripper="true"/>
 
   model: piper | piper_h | piper_l | piper_x (as robot.model in the piper_sdk config).
@@ -21,10 +21,10 @@
       <link name="${piper_arm__model_must_be_piper_piper_h_piper_l_or_piper_x}"/>
     </xacro:unless>
     <xacro:if value="${with_gripper}">
-      <xacro:include filename="$(find piper_sdk_description)/urdf/generated/ros/${model}_gripper.urdf"/>
+      <xacro:include filename="$(find piper_description)/urdf/generated/ros/${model}_gripper.urdf"/>
     </xacro:if>
     <xacro:unless value="${with_gripper}">
-      <xacro:include filename="$(find piper_sdk_description)/urdf/generated/ros/${model}.urdf"/>
+      <xacro:include filename="$(find piper_description)/urdf/generated/ros/${model}.urdf"/>
     </xacro:unless>
   </xacro:macro>
 </robot>

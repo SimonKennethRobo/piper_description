@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.16)
-project(piper_sdk_description NONE)
+project(piper_description NONE)
 
 find_package(ament_cmake REQUIRED)
 

@@ -4,8 +4,8 @@ Meshes, visuals and simulator/RViz URDFs of the AgileX Piper series (piper, pipe
 piper_l, piper_x, each bare or with the AgileX gripper). Only needed for simulation and
 digital twins; piper_sdk itself needs just its own plain URDFs.
 
-Repository name: `piper_description`. The ROS package name and generated `package://` mesh
-URIs remain `piper_sdk_description` for compatibility.
+Repository, ROS package and resource namespace: `piper_description`. Generated mesh URIs use
+`package://piper_description/meshes/...`.
 
 Part of Piper Lab as a shared resource repository beside `piper_control`, `piper_sim` and
 `piper_studio`. The kinematic/inertial source URDFs belong to Control; meshes, visual overlays
@@ -25,7 +25,7 @@ data. It adds what the SDK does not need, from `overlay/`:
 
 `scripts/generate_urdfs.py` (python3 only, no ROS) writes, from an SDK URDF directory:
 
-- `urdf/generated/ros/<name>.urdf`: `package://piper_sdk_description/meshes/...`
+- `urdf/generated/ros/<name>.urdf`: `package://piper_description/meshes/...`
 - `urdf/generated/sim/<name>.urdf`: meshes relative to the file (`../../../meshes/...`),
   movable gripper joints (`gripper` = jaw opening, `gripper_joint1/2` mimic it); for MuJoCo
   and other simulators that read a plain file

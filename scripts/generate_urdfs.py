@@ -9,7 +9,7 @@ what a simulator, RViz or a digital twin needs: meshes, materials and collision 
 taken from overlay/ (materials.json, <model>.json, agx_gripper.json). Output, under --out
 (default: urdf/generated of this package):
 
-    ros/<name>.urdf   meshes as package://piper_sdk_description/meshes/...  (xacro entry
+    ros/<name>.urdf   meshes as package://piper_description/meshes/...  (xacro entry
                       point urdf/piper_description.urdf.xacro includes these)
     sim/<name>.urdf   meshes relative to the file (../../../meshes/...): for simulators that
                       read a plain file (MuJoCo, ...), no ROS needed; movable gripper joints
@@ -31,7 +31,7 @@ import sys
 import tempfile
 import xml.etree.ElementTree as ET
 
-PKG = "piper_sdk_description"
+PKG = "piper_description"
 HERE = pathlib.Path(__file__).resolve().parent.parent
 MODELS = ["piper", "piper_h", "piper_l", "piper_x"]
 
