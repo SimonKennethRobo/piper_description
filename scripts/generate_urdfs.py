@@ -16,7 +16,7 @@ taken from overlay/ (materials.json, <model>.json, agx_gripper.json). Output, un
 
 SDK URDF directory: --sdk-urdf-dir, else $PIPER_SDK_URDF_DIR, else piper_sdk/urdf of the SDK
 checkout this package is a submodule of (../piper_sdk/urdf) or sits next to
-(../piper_cpp_sdk/piper_sdk/urdf).
+(../piper_control/piper_sdk/urdf).
 
 --check generates into a temporary directory and compares with --out; exit 0 = up to date,
 1 = out of date, 77 = no SDK URDF directory found (skipped; the CTest convention).
@@ -41,7 +41,9 @@ def find_sdk_urdf_dir(arg):
     if not arg:
         if os.environ.get("PIPER_SDK_URDF_DIR"):
             candidates.append(os.environ["PIPER_SDK_URDF_DIR"])
-        candidates += [HERE.parent / "piper_sdk" / "urdf", HERE.parent / "piper_cpp_sdk" / "piper_sdk" / "urdf"]
+        candidates += [HERE.parent / "piper_sdk" / "urdf",
+                       HERE.parent / "piper_control" / "piper_sdk" / "urdf",
+                       HERE.parent / "piper_cpp_sdk" / "piper_sdk" / "urdf"]
     for c in candidates:
         c = pathlib.Path(c)
         if (c / "piper.urdf").is_file():
@@ -140,7 +142,7 @@ def main():
     out = pathlib.Path(args.out)
     if sdk is None:
         print("SKIP: no SDK URDF directory (use --sdk-urdf-dir or PIPER_SDK_URDF_DIR, or place this package "
-              "in the piper_cpp_sdk checkout)")
+              "in the piper_control checkout)")
         sys.exit(77 if args.check else 1)
     if args.check:
         with tempfile.TemporaryDirectory() as tmp:

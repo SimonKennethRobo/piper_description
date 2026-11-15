@@ -4,6 +4,10 @@ Meshes, visuals and simulator/RViz URDFs of the AgileX Piper series (piper, pipe
 piper_l, piper_x, each bare or with the AgileX gripper). Only needed for simulation and
 digital twins; piper_sdk itself needs just its own plain URDFs.
 
+Part of Piper Lab as a shared resource repository beside `piper_control`, `piper_sim` and
+`piper_studio`. The kinematic/inertial source URDFs belong to Control; meshes, visual overlays
+and generated ROS/simulator URDFs belong here so all consumers can use them independently.
+
 ## Source of truth
 
 The plain URDFs of the SDK (`piper_sdk/urdf/<model>[_gripper].urdf`: kinematics and
@@ -26,7 +30,7 @@ data. It adds what the SDK does not need, from `overlay/`:
 Both are committed, so this package works without an SDK checkout. After the SDK URDFs
 change, run `scripts/generate_urdfs.py [--sdk-urdf-dir DIR]` and commit the result. The
 directory defaults to `$PIPER_SDK_URDF_DIR`, `../piper_sdk/urdf` (this package as the SDK's
-submodule) or `../piper_cpp_sdk/piper_sdk/urdf`. The test `generated_urdfs_up_to_date`
+submodule) or `../piper_control/piper_sdk/urdf`. The test `generated_urdfs_up_to_date`
 (`generate_urdfs.py --check`) fails when they are stale and is skipped without an SDK.
 
 ## ROS
