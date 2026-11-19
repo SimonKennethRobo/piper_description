@@ -7,7 +7,7 @@ digital twins; piper_sdk itself needs just its own plain URDFs.
 Repository, ROS package and resource namespace: `piper_description`. Generated mesh URIs use
 `package://piper_description/meshes/...`.
 
-Part of Piper Lab as a shared resource repository beside `piper_control`, `piper_sim` and
+Part of Piper Lab as a shared resource repository beside `piper_sdk`, `piper_sim` and
 `piper_studio`. The kinematic/inertial source URDFs belong to Control; meshes, visual overlays
 and generated ROS/simulator URDFs belong here so all consumers can use them independently.
 
@@ -33,7 +33,7 @@ data. It adds what the SDK does not need, from `overlay/`:
 Both are committed, so this package works without an SDK checkout. After the SDK URDFs
 change, run `scripts/generate_urdfs.py [--sdk-urdf-dir DIR]` and commit the result. The
 directory defaults to `$PIPER_SDK_URDF_DIR`, `../piper_sdk/urdf` (this package as the SDK's
-submodule) or `../piper_control/piper_sdk/urdf`. The test `generated_urdfs_up_to_date`
+submodule) or `../piper_sdk/piper_sdk/urdf`. The test `generated_urdfs_up_to_date`
 (`generate_urdfs.py --check`) fails when they are stale and is skipped without an SDK.
 
 ## ROS
